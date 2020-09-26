@@ -44,4 +44,19 @@ class PersonDao extends Connection
 
         return "Registro salvo com sucesso!";
     }
+
+    public function update(Person $person, int $id)
+    {
+        $sql = "UPDATE $this->tableName set name = :name, cellphone = :cellphone, file_name_image = :filenameimage, email = :email WHERE id = :id";
+
+        $this->query->executeQuery($sql, array(
+            ":name" => $person->getName(), 
+            ":cellphone" => $person->getCellPhone(),
+            ":filenameimage" => $person->getFileNameImage(),
+            ":email" => $person->getEmail(),
+            ":id" => $id
+        ));
+
+        return "Registro atualizado com sucesso!";
+    }
 }

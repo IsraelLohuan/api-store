@@ -57,4 +57,19 @@ class PersonController
             return Utilities::output($e->getMessage(), 404);
         }
     }
+
+    public function update(Person $person, array $body)
+    {
+        try {
+
+            if(!array_key_exists("id", $body)) {
+                throw new \Exception("ID não inserido!");
+            }
+
+            return Utilities::output($this->personDao->update($person, $body["id"]));
+
+        } catch(\Exception $e) {
+            return Utilities::output($e->getMessage(), 404);
+        }
+    }
 }
