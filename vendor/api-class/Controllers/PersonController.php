@@ -59,6 +59,7 @@ class PersonController
             $person = new Person(null, $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
 
             $this->validator->isValidEmail($person->getEmail());
+            $this->validateFieldsUnique($person);
 
             $values = array(
                 $person->getName(),
@@ -67,8 +68,6 @@ class PersonController
                 $person->getFileNameImage(),
                 $person->getEmail()
             );
-
-            $this->validateFieldsUnique($person);
 
             return Utilities::output($this->personDao->personInsert($person, $values));
 
@@ -86,6 +85,7 @@ class PersonController
             $person = new Person($body["id"], $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
         
             $this->validator->isValidEmail($person->getEmail());
+            $this->validateFieldsUnique($person);
 
             $values = array(
                 $person->getName(),
@@ -94,8 +94,6 @@ class PersonController
                 $person->getEmail(),
                 $person->getId()
             );
-
-            $this->validateFieldsUnique($person);
 
             return Utilities::output($this->personDao->update($values));
 
