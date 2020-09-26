@@ -34,7 +34,7 @@ class PersonController
     public function getByEmail(string $email):array
     {
         try {
-            $values = $this->personDao->getByEmail($email);
+            $values = $this->personDao->getByKey($email);
 
             if(count($values) == 0) {
                 return Utilities::output("Pessoa não encontrada!", 204);
@@ -50,8 +50,16 @@ class PersonController
     public function insert(Person $person)
     {
         try {
+           
+            $values = array(
+                $person->getName(),
+                $person->getDocument(),
+                $person->getCellphone(),
+                $person->getFileNameImage(),
+                $person->getEmail()
+            );
 
-            return Utilities::output($this->personDao->insert($person));
+            return Utilities::output($this->personDao->insert($values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
@@ -66,7 +74,15 @@ class PersonController
                 throw new \Exception("ID não inserido!");
             }
 
-            return Utilities::output($this->personDao->update($person, $body["id"]));
+            $values = array(
+                $person->getName(),
+                $person->getCellphone(),
+                $person->getFileNameImage(),
+                $person->getEmail(),
+                $body["id"]
+            );
+
+            return Utilities::output($this->personDao->update($values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
