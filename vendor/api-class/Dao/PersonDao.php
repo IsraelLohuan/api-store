@@ -12,7 +12,7 @@ class PersonDao extends Dao
     public function __construct()
     {
        $keys = array(
-            "all" => "name, date_register, file_name_image, email",
+            "all" => "id, name, date_register, file_name_image, email",
             "byKey" => "email",
             "insert" => [
                 "columns" => "name, document, cellphone, file_name_image, email",

@@ -5,14 +5,17 @@ namespace Application\Controllers;
 use Application\Models\Person;
 use Application\Dao\PersonDao;
 use Application\Utilities;
+use Application\Validator;
 
 class PersonController 
 {
     private $personDao;
+    private $validator;
 
     public function __construct()
     {
         $this->personDao = new PersonDao();
+        $this->validator = new Validator();
     }
 
     public function getAll():array
@@ -51,6 +54,8 @@ class PersonController
     {
         try {
            
+            $this->validator->isValidEmail($person->getEmail());
+
             $values = array(
                 $person->getName(),
                 $person->getDocument(),
@@ -73,6 +78,8 @@ class PersonController
             if(!array_key_exists("id", $body)) {
                 throw new \Exception("ID não inserido!");
             }
+
+            $this->validator->isValidEmail($person->getEmail());
 
             $values = array(
                 $person->getName(),
