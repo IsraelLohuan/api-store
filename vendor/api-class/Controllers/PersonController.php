@@ -69,7 +69,7 @@ class PersonController
                 $person->getEmail()
             );
 
-            return Utilities::output($this->personDao->personInsert($person, $values));
+            return Utilities::output($this->personDao->insert($values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);

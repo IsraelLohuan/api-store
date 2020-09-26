@@ -22,3 +22,25 @@ $app->get("/product/{id}", function($request, $response) {
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
+
+$app->post("/product", function($request, $response) {
+
+    $productController = new ProductController();
+
+    $body = $request->getParsedBody();
+
+    $data = $productController->insert($body);
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});
+
+$app->put("/product", function($request, $response) {
+
+    $productController = new ProductController();
+
+    $body = $request->getParsedBody();
+
+    $data = $productController->update($body);
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});

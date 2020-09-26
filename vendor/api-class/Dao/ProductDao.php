@@ -18,7 +18,7 @@ class ProductDao extends Dao
                 "binds" => ":price, :description, :spotlight, :value_discount, :male, :product_category_id, :title"
             ],
             "update" => [
-                "columns" => "price, description, spotlight, deleted, value_discount, male, product_category_id, title",
+                "columns" => "price, description, spotlight, deleted, value_discount, male, product_category_id, title, id",
                 "query" => "
                     price = :price, 
                     description = :description, 
@@ -27,7 +27,7 @@ class ProductDao extends Dao
                     value_discount = :value_discount, 
                     male = :male, 
                     product_category_id = :product_category_id,
-                    title = :title,
+                    title = :title
                     WHERE id = :id",
                 "binds" =>   ":price, :description, :spotlight, :deleted, :value_discount, :male, :product_category_id, :title, :id"     
             ],
