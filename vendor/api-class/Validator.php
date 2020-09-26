@@ -33,13 +33,17 @@ class Validator
     */
     public function isValidFields(array $body, $fields)
     {
-       $fields = explode(',', $fields);
+        if(count($body) == 0) {
+            throw new \Exception("É necessário preencher o campo body!");
+        }
 
-       foreach($fields as $key => $value)
-       {
+        $fields = explode(',', $fields);
+
+        foreach($fields as $key => $value)
+        {
             if(!array_key_exists(trim($value), $body)) {
                 throw new \Exception("Campo $value não inserido!");
             }
-       }
+        }
     }
 }

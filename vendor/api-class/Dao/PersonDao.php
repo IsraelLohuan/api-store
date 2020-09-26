@@ -2,9 +2,6 @@
 
 namespace Application\Dao;
 
-use Application\Models\Person;
-use Application\Database\Connection;
-use Application\Database\Query;
 use Application\Dao\Dao;
 
 class PersonDao extends Dao

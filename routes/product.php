@@ -29,7 +29,7 @@ $app->post("/product", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $data = $productController->insert($body);
+    $data = $productController->insert($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
@@ -40,7 +40,7 @@ $app->put("/product", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $data = $productController->update($body);
+    $data = $productController->update($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
