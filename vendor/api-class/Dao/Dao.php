@@ -72,5 +72,19 @@ abstract class Dao extends Connection
 
         return $valuesFields;
     }
+
+    public function getQueryInstance()
+    {
+        return $this->query;
+    }
+
+    public function fieldExists(string $column, string $value):bool
+    {
+        $sql = "SELECT * FROM person WHERE $column = '$value'";
+
+        $exists = count($this->query->select($sql)) != 0;
+
+        return $exists;
+    }
 }
 

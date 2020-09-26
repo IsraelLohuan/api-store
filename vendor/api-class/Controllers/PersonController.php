@@ -68,7 +68,9 @@ class PersonController
                 $person->getEmail()
             );
 
-            return Utilities::output($this->personDao->insert($values));
+            $this->validateFieldsUnique($person);
+
+            return Utilities::output($this->personDao->personInsert($person, $values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
@@ -93,10 +95,25 @@ class PersonController
                 $person->getId()
             );
 
+            $this->validateFieldsUnique($person);
+
             return Utilities::output($this->personDao->update($values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
+        }
+    }
+
+    public function validateFieldsUnique(Person $person)
+    {
+        if($this->personDao->fieldExists("email", $person->getEmail()))
+        {
+            throw new \Exception("Email informado já existente!");
+        }
+
+        if($this->personDao->fieldExists("document", $person->getDocument()))
+        {
+            throw new \Exception("Documento informado já existente!");
         }
     }
 }
