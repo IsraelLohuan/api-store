@@ -30,16 +30,7 @@ $app->post("/person", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $person = new Person(
-        null,
-        $body["name"],
-        $body["document"],
-        $body["cellphone"],
-        $body["filenameimage"],
-        $body["email"]
-    );
-
-    $data = $personController->insert($person);
+    $data = $personController->insert($body);
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
@@ -50,16 +41,7 @@ $app->put("/person", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $person = new Person(
-        null,
-        $body["name"],
-        $body["document"],
-        $body["cellphone"],
-        $body["filenameimage"],
-        $body["email"]
-    );
-
-    $data = $personController->update($person, $body);
+    $data = $personController->update($body);
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });

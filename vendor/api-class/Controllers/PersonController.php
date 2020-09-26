@@ -50,10 +50,14 @@ class PersonController
         }
     }
 
-    public function insert(Person $person)
+    public function insert(array $body)
     {
         try {
            
+            $this->validator->isValidFields($body, $this->personDao->getKeys()["insert"]["columns"]);
+
+            $person = new Person(null, $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
+
             $this->validator->isValidEmail($person->getEmail());
 
             $values = array(
@@ -71,14 +75,14 @@ class PersonController
         }
     }
 
-    public function update(Person $person, array $body)
+    public function update(array $body)
     {
         try {
 
-            if(!array_key_exists("id", $body)) {
-                throw new \Exception("ID não inserido!");
-            }
+            $this->validator->isValidFields($body, $this->personDao->getKeys()["update"]["columns"]);
 
+            $person = new Person($body["id"], $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
+        
             $this->validator->isValidEmail($person->getEmail());
 
             $values = array(
@@ -86,7 +90,7 @@ class PersonController
                 $person->getCellphone(),
                 $person->getFileNameImage(),
                 $person->getEmail(),
-                $body["id"]
+                $person->getId()
             );
 
             return Utilities::output($this->personDao->update($values));
