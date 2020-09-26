@@ -29,4 +29,20 @@ class PersonController
             return Utilities::output($e->getMessage(), 404);
         }
     }
+
+    public function getByEmail(string $email):array
+    {
+        try {
+            $values = $this->personDao->getByEmail($email);
+
+            if(count($values) == 0) {
+                return Utilities::output("Pessoa não encontrada!", 204);
+            } 
+
+            return Utilities::output($values);
+
+        } catch(\Exception $e) {
+            return Utilities::output($e->getMessage(), 404);
+        }
+    }
 }

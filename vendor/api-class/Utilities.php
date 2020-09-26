@@ -9,7 +9,7 @@ class Utilities
         if($statusCode != null) {
             return array(
                 "result" => $result,
-                "statusCode" => $statusCode
+                "code" => $statusCode
             );
         }
 
@@ -18,6 +18,6 @@ class Utilities
 
     public static function getStatusCode(array $values):int 
     {
-        return array_key_exists("statusCode", $values) ? $values["statusCode"] : 200;
+        return array_key_exists("code", $values) ? $values["code"] : 200;
     }
 }

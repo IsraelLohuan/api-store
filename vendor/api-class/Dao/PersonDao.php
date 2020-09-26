@@ -20,6 +20,13 @@ class PersonDao extends Connection
 
     public function getAll():array
     {
-        return $this->query->select("SELECT * FROM " . $this->tableName);
+        return $this->query->select("SELECT name, date_register, file_name_image, email FROM " . $this->tableName);
+    }
+
+    public function getByEmail(string $email) 
+    {
+        $sql = "SELECT * FROM $this->tableName WHERE email = '$email'";
+
+        return $this->query->select($sql);
     }
 }

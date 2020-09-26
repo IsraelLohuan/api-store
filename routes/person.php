@@ -11,3 +11,14 @@ $app->get("/persons", function($request, $response) {
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
+
+$app->get("/person/{email}", function($request, $response) {
+   
+    $personController = new PersonController();
+
+    $email = $request->getAttribute('email');
+
+    $data = $personController->getByEmail($email);
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});
