@@ -20,7 +20,7 @@ class PersonDao extends Connection
 
     public function getAll():array
     {
-        return $this->query->select("SELECT name, date_register, file_name_image, email FROM " . $this->tableName);
+        return $this->query->select("SELECT name, date_register, file_name_image, email FROM $this->tableName");
     }
 
     public function getByEmail(string $email) 
@@ -28,5 +28,20 @@ class PersonDao extends Connection
         $sql = "SELECT * FROM $this->tableName WHERE email = '$email'";
 
         return $this->query->select($sql);
+    }
+
+    public function insert(Person $person)
+    {
+        $sql = "INSERT INTO $this->tableName (name, document, cellphone, file_name_image, email) VALUES (:name, :document, :cellphone, :filenameimage, :email)";
+
+        $this->query->executeQuery($sql, array(
+            ":name" => $person->getName(),
+            ":document" => $person->getDocument(),   
+            ":cellphone" => $person->getCellPhone(),
+            ":filenameimage" => $person->getFileNameImage(),
+            ":email" => $person->getEmail()
+        ));
+
+        return "Registro salvo com sucesso!";
     }
 }

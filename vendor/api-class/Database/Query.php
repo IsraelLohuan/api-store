@@ -24,7 +24,7 @@ class Query
 		$statement->bindParam($key, $value);
 	}
 
-	public function query($rawQuery, $params = array())
+	public function executeQuery($rawQuery, $params = array())
 	{
 		$stmt = $this->conn->prepare($rawQuery);
 
@@ -34,7 +34,7 @@ class Query
 
 		if($result == 0)
 		{
-			throw new \Exception("Falha ao salvar registro :(");
+			throw new \Exception("Falha ao salvar registro!");
 		}
 	}
 

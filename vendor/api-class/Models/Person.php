@@ -9,16 +9,18 @@ class Person
     private $dateRegister;
     private $document;
     private $cellphone;
+    private $fileNameImage;
     private $email;
     
-    public function __construct($id, $name, $dateRegister, $document, $cellphone, $email) 
+    public function __construct($id, $name, $document, $cellphone, $fileNameImage, $email, $dateRegister = "") 
     {
         $this->setId($id);
         $this->setName($name);
-        $this->setDateRegister($dateRegister);
         $this->setDocument($document);
         $this->setCellPhone($cellphone);
+        $this->setFileNameImage($fileNameImage);
         $this->setEmail($email);
+        $this->setDateRegister($dateRegister);
     }
 
     public function setId($id) {
@@ -59,6 +61,14 @@ class Person
 
     public function getCellPhone() {
         return $this->phone;
+    }
+
+    public function setFileNameImage($file) {
+        $this->fileNameImage = $file;
+    }
+
+    public function getFileNameImage() {
+        return $this->fileNameImage;
     }
 
     public function setEmail($email) {

@@ -2,6 +2,7 @@
 
 namespace Application\Controllers;
 
+use Application\Models\Person;
 use Application\Dao\PersonDao;
 use Application\Utilities;
 
@@ -40,6 +41,17 @@ class PersonController
             } 
 
             return Utilities::output($values);
+
+        } catch(\Exception $e) {
+            return Utilities::output($e->getMessage(), 404);
+        }
+    }
+
+    public function insert(Person $person)
+    {
+        try {
+
+            return Utilities::output($this->personDao->insert($person));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
