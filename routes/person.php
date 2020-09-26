@@ -1,10 +1,13 @@
 <?php
 
 use Application\Controllers\PersonController;
+use Application\Utilities;
 
-$app->get("/persons", function() {
-    
+$app->get("/persons", function($request, $response) {
+   
     $personController = new PersonController();
 
-    $personController->getAll();
+    $data = $personController->getAll();
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
 });

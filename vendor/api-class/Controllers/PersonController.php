@@ -3,6 +3,7 @@
 namespace Application\Controllers;
 
 use Application\Dao\PersonDao;
+use Application\Utilities;
 
 class PersonController 
 {
@@ -13,8 +14,19 @@ class PersonController
         $this->personDao = new PersonDao();
     }
 
-    public function getAll()
+    public function getAll():array
     {
-        echo json_encode($this->personDao->getAll());
+        try {
+            $values = $this->personDao->getAll();
+
+            if(count($values) == 0) {
+                return Utilities::output("Não há pessoas cadastradas!", 204);
+            } 
+
+            return Utilities::output($values);
+
+        } catch(\Exception $e) {
+            return Utilities::output($e->getMessage(), 404);
+        }
     }
 }
