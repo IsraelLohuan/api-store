@@ -19,41 +19,41 @@ class User
 
     public function getId()
     {
-		return $this->id;
-	}
+		  return $this->id;
+	  }
 
     public function setId($id)
     {
-		$this->id = $id;
-	}
+		  $this->id = $id;
+	  }
 
     public function getPassword()
     {
-		return $this->password;
-	}
+		  return $this->password;
+	  }
 
     public function setPassword($password)
     {
-		$this->password = $password;
-	}
+		  $this->password = $password;
+	  }
 
     public function getAdmin()
     {
-		return $this->admin;
-	}
+		  return $this->admin;
+	  }
 
     public function setAdmin($admin)
     {
-		$this->admin = $admin;
-	}
+		  $this->admin = $admin;
+	  }
 
     public function getIdPerson()
     {
-		return $this->idPerson;
-	}
+		  return $this->idPerson;
+	  }
 
     public function setIdPerson($idPerson)
     {
-		$this->idPerson = $idPerson;
-	}
+		  $this->idPerson = $idPerson;
+	  }
 }
