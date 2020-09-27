@@ -9,6 +9,7 @@ require_once("routes/product.php");
 require_once("routes/product-category.php");
 require_once("routes/user.php");
 require_once("routes/order.php");
+require_once("routes/order-status.php");
 
 $app->run();
 
