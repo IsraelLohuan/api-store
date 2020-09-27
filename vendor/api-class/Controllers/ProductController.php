@@ -40,7 +40,7 @@ class ProductController
             $values = $this->productDao->getByKey($id);
 
             if(count($values) == 0) {
-                return Utilities::output("Produto não encontrada!", 204);
+                return Utilities::output("Produto não encontrado!", 204);
             } 
 
             return Utilities::output($values);
