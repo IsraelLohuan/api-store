@@ -4,7 +4,7 @@ namespace Application\Dao;
 
 use Application\Dao\Dao;
 
-class SalesOrder extends Dao
+class SalesOrderDao extends Dao
 {
     private $keys;
 
@@ -29,7 +29,7 @@ class SalesOrder extends Dao
             ],
        );
 
-       parent::__construct("user", $this->keys);
+       parent::__construct("sales_order", $this->keys);
     }
 
     public function getKeys() 

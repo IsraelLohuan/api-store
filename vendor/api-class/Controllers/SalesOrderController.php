@@ -54,15 +54,15 @@ class SalesOrderController
     {
         try {
            
-            $this->validator->isValidFields($body, $this->userDao->getKeys()["insert"]["columns"]);
+            $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["insert"]["columns"]);
             
-            $salesOrder = new SalesOrder(null, $body["price"], $body["person_id"], $body["status_order"], $body["address_id"]);
+            $salesOrder = new SalesOrder(null, $body["price"], null, $body["person_id"], $body["status_order_id"], $body["address_id"]);
 
             $values = array(
-                $user->getPrice(),
-                $user->getPersonId(),
-                $user->getStatusOrder(),
-                $user->getAddressId()
+                $salesOrder->getPrice(),
+                $salesOrder->getPersonId(),
+                $salesOrder->getStatusOrderId(),
+                $salesOrder->getAddressId()
             );
 
             return Utilities::output($this->salesOrderDao->insert($values));
@@ -76,9 +76,9 @@ class SalesOrderController
     {
         try {
            
-            $this->validator->isValidFields($body, $this->userDao->getKeys()["update"]["columns"]);
+            $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["update"]["columns"]);
             
-            $salesOrder = new SalesOrder($body["id"], $body["price"], $body["person_id"], $body["status_order_id"], $body["address_id"]);
+            $salesOrder = new SalesOrder($body["id"], $body["price"], null, $body["person_id"], $body["status_order_id"], $body["address_id"]);
             
             $values = array(
                 $salesOrder->getPrice(),

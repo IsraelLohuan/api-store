@@ -12,7 +12,7 @@ $app->get("/orders", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
-$app->get("/orders/{id}", function($request, $response) {
+$app->get("/order/{id}", function($request, $response) {
 
     $salesOrderController = new SalesOrderController();
 
@@ -23,7 +23,7 @@ $app->get("/orders/{id}", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
-$app->post("/orders", function($request, $response) {
+$app->post("/order", function($request, $response) {
 
     $salesOrderController = new SalesOrderController();
 
@@ -34,7 +34,7 @@ $app->post("/orders", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
-$app->put("/orders", function($request, $response) {
+$app->put("/order", function($request, $response) {
 
     $salesOrderController = new SalesOrderController();
 
