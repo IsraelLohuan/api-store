@@ -30,7 +30,7 @@ $app->post("/person", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $data = $personController->insert($body);
+    $data = $personController->insert($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
@@ -40,8 +40,8 @@ $app->put("/person", function($request, $response) {
     $personController = new PersonController();
 
     $body = $request->getParsedBody();
-
-    $data = $personController->update($body);
+    
+    $data = $personController->update($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });

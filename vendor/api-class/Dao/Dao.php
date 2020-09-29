@@ -24,7 +24,7 @@ abstract class Dao extends Connection
     {
         $columns = $this->keys["all"];
 
-        return $this->query->select("SELECT $columns FROM $this->entity");
+        return $this->query->select("SELECT $columns FROM $this->entity where deleted = 0");
     }
 
     public function getByKey($key) 
@@ -78,11 +78,16 @@ abstract class Dao extends Connection
         return $this->query;
     }
 
-    public function fieldExists(string $column, string $value):bool
+    public function fieldExists(string $column, string $value, int $id = -1):bool
     {
-        $sql = "SELECT * FROM person WHERE $column = '$value'";
+        $sql = $id != -1 ? "SELECT * FROM person WHERE $column = :value and id != :id" : "SELECT * FROM person WHERE $column = '$value'";
 
-        $exists = count($this->query->select($sql)) != 0;
+        $result = $this->query->select($sql, array(
+            ":value" => $value,
+            ":id" => $id
+        ));
+
+        $exists = count($result) != 0;
 
         return $exists;
     }

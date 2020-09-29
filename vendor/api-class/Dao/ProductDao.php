@@ -33,7 +33,7 @@ class ProductDao extends Dao
             ],
        );
 
-       parent::__construct("products", $this->keys);
+       parent::__construct("product", $this->keys);
     }
 
     public function getKeys() 

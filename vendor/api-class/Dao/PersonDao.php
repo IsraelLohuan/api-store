@@ -18,9 +18,9 @@ class PersonDao extends Dao
                 "binds" => ":name, :document, :cellphone, :file_name_image, :email"
             ],
             "update" => [
-                "columns" => "name, cellphone, file_name_image, email, id",
-                "query" => "name = :name, cellphone = :cellphone, file_name_image = :file_name_image, email = :email WHERE id = :id",
-                "binds" => ":name, :cellphone, :file_name_image, :email, :id"     
+                "columns" => "name, cellphone, deleted, file_name_image, email, id",
+                "query" => "name = :name, cellphone = :cellphone, deleted = :deleted, file_name_image = :file_name_image, email = :email WHERE id = :id",
+                "binds" => ":name, :cellphone, :deleted, :file_name_image, :email, :id"     
             ],
        );
 

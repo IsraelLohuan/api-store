@@ -82,14 +82,15 @@ class PersonController
 
             $this->validator->isValidFields($body, $this->personDao->getKeys()["update"]["columns"]);
 
-            $person = new Person($body["id"], $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
+            $person = new Person($body["id"], $body["name"], null, $body["cellphone"], $body["file_name_image"], $body["email"]);
         
             $this->validator->isValidEmail($person->getEmail());
-            $this->validateFieldsUnique($person);
+            $this->validateFieldsUnique($person, false);
 
             $values = array(
                 $person->getName(),
                 $person->getCellphone(),
+                $body["deleted"],
                 $person->getFileNameImage(),
                 $person->getEmail(),
                 $person->getId()
@@ -102,16 +103,19 @@ class PersonController
         }
     }
 
-    public function validateFieldsUnique(Person $person)
+    public function validateFieldsUnique(Person $person, bool $validateDocument = true)
     {
-        if($this->personDao->fieldExists("email", $person->getEmail()))
+        if($this->personDao->fieldExists("email", $person->getEmail(), $person->getId()))
         {
             throw new \Exception("Email informado já existente!");
         }
 
-        if($this->personDao->fieldExists("document", $person->getDocument()))
+        if($validateDocument) 
         {
-            throw new \Exception("Documento informado já existente!");
+            if($this->personDao->fieldExists("document", $person->getDocument()))
+            {
+                throw new \Exception("Documento informado já existente!");
+            }
         }
     }
 }
