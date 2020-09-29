@@ -18,12 +18,12 @@ class ProductImageDao extends Dao
                 "binds" => ":product_id, :file_name_image"
             ],
             "update" => [
-                "columns" => "id, product_id, file_name_image",
+                "columns" => "product_id, file_name_image, id",
                 "query" => "
                     product_id = :product_id,
-                    file_name_image = :file_name_image,
+                    file_name_image = :file_name_image
                     WHERE id = :id",
-                "binds" => ":id, :product_id, :file_name_image"     
+                "binds" => ":product_id, :file_name_image, :id"     
             ],
        );
 

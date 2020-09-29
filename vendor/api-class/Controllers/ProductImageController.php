@@ -63,9 +63,9 @@ class ProductImageController
             $productImage = new ProductImage($body["id"], $body["product_id"], $body["file_name_image"]);
             
             $values = array(
-                $productImage->getId(),
                 $productImage->getProductId(),
                 $productImage->getFileNameImage(),
+                $productImage->getId()
             );
 
             return Utilities::output($this->productImageDao->update($values));
