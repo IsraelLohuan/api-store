@@ -12,6 +12,7 @@ require_once("routes/order.php");
 require_once("routes/order-status.php");
 require_once("routes/product-image.php");
 require_once("routes/address.php");
+require_once("routes/item-order.php");
 
 $app->run();
 
