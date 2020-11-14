@@ -3,7 +3,6 @@
 namespace Application\Controllers;
 
 use Application\Dao\ProductDao;
-use Application\Models\Product;
 use Application\Utilities;
 use Application\Validator;
 

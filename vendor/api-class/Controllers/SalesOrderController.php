@@ -3,7 +3,6 @@
 namespace Application\Controllers;
 
 use Application\Dao\SalesOrderDao;
-use Application\Models\SalesOrder;
 use Application\Utilities;
 use Application\Validator;
 
@@ -54,21 +53,12 @@ class SalesOrderController
     {
         try {
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["insert"]["columns"]);
-            
-            $salesOrder = new SalesOrder(
-                null, 
-                $body["preco"],
-                null,
-                $body["id_pessoa"],   
-                $body["status_pedido_id"],
-                $body["endereco_id"]
-            );
 
             $values = array(
-                $salesOrder->getPrice(),
-                $salesOrder->getPersonId(),
-                $salesOrder->getStatusOrderId(),
-                $salesOrder->getAddressId()
+                $body["preco"],
+                $body["id_pessoa"],
+                $body["status_pedido_id"],
+                $body["endereco_id"]
             );
 
             return Utilities::output($this->salesOrderDao->insert($values));
@@ -84,22 +74,13 @@ class SalesOrderController
            
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["update"]["columns"]);
             
-            $salesOrder = new SalesOrder(
-                $body["id"], 
+            $values = array(
                 $body["preco"],
-                $body["id_pessoa"],  
+                $body["id_pessoa"], 
                 $body["status_pedido_id"],
                 $body["endereco_id"],
-                $body["deleted"]
-            );
-            
-            $values = array(
-                $salesOrder->getPrice(),
-                $salesOrder->getPersonId(),
-                $salesOrder->getStatusOrderId(),
-                $salesOrder->getAddressId(),
-                $salesOrder->getDeleted(),
-                $salesOrder->getId(),
+                $body["deleted"],
+                $body["id"]
             );
 
             return Utilities::output($this->salesOrderDao->update($values));

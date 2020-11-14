@@ -3,7 +3,6 @@
 namespace Application\Controllers;
 
 use Application\Dao\StatusOrderDao;
-use Application\Models\StatusOrder;
 use Application\Utilities;
 use Application\Validator;
 
@@ -56,11 +55,7 @@ class StatusOrderController
            
             $this->validator->isValidFields($body, $this->statusOrderDao->getKeys()["insert"]["columns"]);
             
-            $statusOrder = new StatusOrder(null, $body["status"]);
-
-            $values = array(
-                $statusOrder->getStatus()
-            );
+            $values = array($body["status"]);
 
             return Utilities::output($this->statusOrderDao->insert($values));
 
@@ -78,7 +73,7 @@ class StatusOrderController
             $values = array(
                 $body["id"],
                 $body["status"],
-                $body["deleted"],
+                $body["deleted"]
             );
 
             return Utilities::output($this->statusOrderDao->update($values));

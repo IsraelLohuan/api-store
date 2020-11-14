@@ -3,7 +3,6 @@
 namespace Application\Controllers;
 
 use Application\Dao\ProductCategoryDao;
-use Application\Models\ProductCategory;
 use Application\Utilities;
 use Application\Validator;
 
@@ -40,9 +39,7 @@ class ProductCategoryController
            
             $this->validator->isValidFields($body, $this->productCategoryDao->getKeys()["insert"]["columns"]);
            
-            $category = new ProductCategory(null, $body["descricao"]);
-
-            $values = array($category->getCategoryDescription());
+            $values = array($body["descricao"]);
 
             return Utilities::output($this->productCategoryDao->insert($values));
 
