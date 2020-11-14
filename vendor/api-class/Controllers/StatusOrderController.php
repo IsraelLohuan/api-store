@@ -75,11 +75,10 @@ class StatusOrderController
            
             $this->validator->isValidFields($body, $this->statusOrderDao->getKeys()["update"]["columns"]);
             
-            $statusOrder = new StatusOrder($body["id"], $body["status"]);
-            
             $values = array(
-                $statusOrder->getId(),
-                $statusOrder->getStatus()
+                $body["id"],
+                $body["status"],
+                $body["deleted"],
             );
 
             return Utilities::output($this->statusOrderDao->update($values));

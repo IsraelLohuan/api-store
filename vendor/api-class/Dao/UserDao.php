@@ -18,13 +18,14 @@ class UserDao extends Dao
                 "binds" => ":senha, :admin, :pessoa_id"
             ],
             "update" => [
-                "columns" => "id, senha, admin, pessoa_id",
+                "columns" => "id, senha, admin, pessoa_id, deleted",
                 "query" => "
                     senha = :senha,
                     admin = :admin,
-                    pessoa_id = :pessoa_id
+                    pessoa_id = :pessoa_id,
+                    deleted = :deleted
                     WHERE id = :id",
-                "binds" =>   ":senha, :admin, :pessoa_id, :id"     
+                "binds" =>   ":senha, :admin, :pessoa_id, :deleted, :id"     
             ],
        );
 

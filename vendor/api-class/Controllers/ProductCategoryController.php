@@ -57,14 +57,10 @@ class ProductCategoryController
            
             $this->validator->isValidFields($body, $this->productCategoryDao->getKeys()["update"]["columns"]);
            
-            $category = new ProductCategory(
-                $body["id"], 
-                $body["descricao"]
-            );
-            
             $values = array(
-                $category->getCategoryDescription(),
-                $category->getId()
+                $body["descricao"],
+                $body["id"],
+                $body["deleted"]
             );
 
             return Utilities::output($this->productCategoryDao->update($values));

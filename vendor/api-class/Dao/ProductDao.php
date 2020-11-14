@@ -11,14 +11,14 @@ class ProductDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, preco, descricao, desconto, masculino, titulo",
+            "all" => "id, preco, descricao, desconto, masculino, filename, titulo",
             "byKey" => "id",
             "insert" => [
-                "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo",
-                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo"
+                "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, filename",
+                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo, :filename"
             ],
             "update" => [
-                "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, id",
+                "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, filename, id",
                 "query" => "
                     preco = :preco, 
                     descricao = :descricao, 
@@ -27,9 +27,10 @@ class ProductDao extends Dao
                     desconto = :desconto, 
                     masculino = :masculino, 
                     produto_categoria_id = :produto_categoria_id,
-                    titulo = :titulo
+                    titulo = :titulo,
+                    filename = :filename,
                     WHERE id = :id",
-                "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :id"     
+                "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :filename, :id"     
             ],
        );
 

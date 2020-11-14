@@ -18,9 +18,9 @@ class ProductCategoryDao extends Dao
                 "binds" => ":descricao"
             ],
             "update" => [
-                "columns" => "descricao, id",
-                "query" => "descricao = :descricao WHERE id = :id",
-                "binds" => ":descricao, :id"     
+                "columns" => "descricao, id, deleted",
+                "query" => "descricao = :descricao, deleted = :deleted WHERE id = :id",
+                "binds" => ":descricao, :deleted, :id"     
             ],
        );
 

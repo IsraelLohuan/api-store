@@ -27,6 +27,8 @@ class ProductController
                 return Utilities::output("Não há produtos cadastrados!", 204);
             } 
 
+            Utilities::setBase64Json($values, "produtos");
+
             return Utilities::output($values);
 
         } catch(\Exception $e) {
@@ -56,25 +58,15 @@ class ProductController
            
             $this->validator->isValidFields($body, $this->productDao->getKeys()["insert"]["columns"]);
            
-            $product= new Product(null, 
+            $values = array(
                 $body["preco"], 
                 $body["descricao"], 
                 $body["destaque"], 
-                0, 
-                $body["desconto"], 
-                $body["masculino"], 
-                $body["produto_categoria_id"], 
-                $body["titulo"]
-            );
-
-            $values = array(
-                $product->getPrice(),
-                $product->getDescription(),
-                $product->getSpotlight(),
-                $product->getValueDiscount(),
-                $product->getMale(),
-                $product->getProductCategoryId(),
-                $product->getTitle()
+                $body["desconto"],
+                $body["masculino"],
+                $body["produto_categoria_id"],
+                $body["titulo"],
+                $body["filename"],
             );
 
             return Utilities::output($this->productDao->insert($values));
@@ -90,7 +82,7 @@ class ProductController
            
             $this->validator->isValidFields($body, $this->productDao->getKeys()["update"]["columns"]);
            
-            $product= new Product(
+            $values = array(
                 $body["id"], 
                 $body["preco"], 
                 $body["descricao"], 
@@ -99,19 +91,8 @@ class ProductController
                 $body["desconto"], 
                 $body["masculino"], 
                 $body["produto_categoria_id"], 
-                $body["titulo"]
-            );
-            
-            $values = array(
-                $product->getPrice(),
-                $product->getDescription(),
-                $product->getSpotlight(),
-                $product->getDeleted(),
-                $product->getValueDiscount(),
-                $product->getMale(),
-                $product->getProductCategoryId(),
-                $product->getTitle(),
-                $product->getId()
+                $body["titulo"],
+                $body["filename"],
             );
 
             return Utilities::output($this->productDao->update($values));

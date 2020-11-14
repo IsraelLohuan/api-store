@@ -77,13 +77,12 @@ class UserController
            
             $this->validator->isValidFields($body, $this->userDao->getKeys()["update"]["columns"]);
             
-            $user = new User($body["id"], $body["senha"], $body["admin"], $body["pessoa_id"]);
-            
             $values = array(
-                $user->getPassword(),
-                $user->getAdmin(),
-                $user->getIdPerson(),
-                $user->getId()
+                $body["senha"],
+                $body["admin"],
+                $body["pessoa_id"],
+                $body["deleted"],
+                $body["id"]
             );
 
             return Utilities::output($this->userDao->update($values));

@@ -16,9 +16,10 @@ class StatusOrderDao extends Dao
                 "binds" => ":status"
             ],
             "update" => [
-                "columns" => "id, status",
+                "columns" => "id, status, deleted",
                 "query" => "
-                    status = :status
+                    status = :status,
+                    deleted = :deleted,
                     WHERE id = :id",
                 "binds" =>   ":id, :status"     
             ],
