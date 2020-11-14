@@ -13,6 +13,17 @@ $app->get("/persons", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
+$app->get("/auth", function($request, $response) {
+   
+    $personController = new PersonController();
+
+    $body = $request->getParsedBody();
+
+    $data = $personController->login($body ?? array());
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});
+
 $app->get("/person/{email}", function($request, $response) {
    
     $personController = new PersonController();

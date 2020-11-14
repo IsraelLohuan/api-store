@@ -7,8 +7,8 @@ use Application\Database\Query;
 
 abstract class Dao extends Connection
 {
+    public $query;
     private $entity;
-    private $query;
     private $keys;
 
     public function __construct(string $entity, array $keys)
@@ -80,8 +80,8 @@ abstract class Dao extends Connection
 
     public function fieldExists(string $column, string $value, int $id = -1):bool
     {
-        $sql = $id != -1 ? "SELECT * FROM person WHERE $column = :value and id != :id" : "SELECT * FROM person WHERE $column = '$value'";
-
+        $sql = $id != -1 ? "SELECT * FROM pessoa WHERE $column = :value and id != :id" : "SELECT * FROM pessoa WHERE $column = '$value'";
+        
         $result = $this->query->select($sql, array(
             ":value" => $value,
             ":id" => $id

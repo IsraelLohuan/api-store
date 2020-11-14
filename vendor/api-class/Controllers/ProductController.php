@@ -24,7 +24,7 @@ class ProductController
             $values = $this->productDao->getAll();
 
             if(count($values) == 0) {
-                return Utilities::output("Não há produtos cadastrados!", 204);
+                return Utilities::output("Não há produtos cadastrado!", 204);
             } 
 
             Utilities::setBase64Json($values, "produtos");

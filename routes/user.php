@@ -44,3 +44,14 @@ $app->put("/user", function($request, $response) {
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
+
+$app->get("/auth", function($request, $response) {
+
+    $userController = new UserController();
+
+    $body = $request->getParsedBody();
+
+    $data = $userController->login($body ?? array());
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});

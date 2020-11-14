@@ -11,16 +11,16 @@ class PersonDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, nome, data_cadastro, file_name, email",
+            "all" => "*",
             "byKey" => "email",
             "insert" => [
-                "columns" => "nome, documento, telefone, file_name, email",
-                "binds" => ":nome, :documento, :telefone, :file_name, :email"
+                "columns" => "nome, documento, telefone, file_name, email, senha, admin",
+                "binds" => ":nome, :documento, :telefone, :file_name, :email, :senha, :admin"
             ],
             "update" => [
-                "columns" => "nome, telefone, deleted, file_name, email, id",
-                "query" => "nome = :nome, telefone = :telefone, deleted = :deleted, file_name = :file_name, email = :email WHERE id = :id",
-                "binds" => ":nome, :telefone, :deleted, :file_name, :email, :id"     
+                "columns" => "nome, telefone, deleted, file_name, email, senha, admin, id",
+                "query" => "nome = :nome, telefone = :telefone, deleted = :deleted, file_name = :file_name, email = :email, senha = :senha, admin = :admin WHERE id = :id",
+                "binds" => ":nome, :telefone, :deleted, :file_name, :email, :senha, :admin, :id"     
             ],
        );
 
@@ -30,5 +30,16 @@ class PersonDao extends Dao
     public function getKeys() 
     {
         return $this->keys;
+    }
+
+    public function login($email, $senha) 
+    {
+        $result = $this->query->select("SELECT * FROM pessoa where email = :email and senha = :senha and deleted = :deleted", array(
+            ":email" => $email,
+            ":senha" => $senha,
+            ":deleted" => 0
+        ));
+
+        return $result;
     }
 }
