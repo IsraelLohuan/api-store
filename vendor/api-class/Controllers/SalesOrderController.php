@@ -53,10 +53,16 @@ class SalesOrderController
     public function insert(array $body)
     {
         try {
-           
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["insert"]["columns"]);
             
-            $salesOrder = new SalesOrder(null, $body["price"], null, $body["person_id"], $body["status_order_id"], $body["address_id"]);
+            $salesOrder = new SalesOrder(
+                null, 
+                $body["preco"],
+                null,
+                $body["id_pessoa"],   
+                $body["status_pedido_id"],
+                $body["endereco_id"]
+            );
 
             $values = array(
                 $salesOrder->getPrice(),
@@ -78,13 +84,21 @@ class SalesOrderController
            
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["update"]["columns"]);
             
-            $salesOrder = new SalesOrder($body["id"], $body["price"], null, $body["person_id"], $body["status_order_id"], $body["address_id"]);
+            $salesOrder = new SalesOrder(
+                $body["id"], 
+                $body["preco"],
+                $body["id_pessoa"],  
+                $body["status_pedido_id"],
+                $body["endereco_id"],
+                $body["deleted"]
+            );
             
             $values = array(
                 $salesOrder->getPrice(),
                 $salesOrder->getPersonId(),
                 $salesOrder->getStatusOrderId(),
                 $salesOrder->getAddressId(),
+                $salesOrder->getDeleted(),
                 $salesOrder->getId(),
             );
 

@@ -11,20 +11,20 @@ class AddressDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, street, public_place, uf, addresscol, neighborhood, cep, number_house, address_description, deleted",
+            "all" => "id, rua, logradouro, uf, cidade, bairro, cep, numero, descricao, deleted",
             "byKey" => "id",
             "insert" => [
-                "columns" => "street, public_place, uf, addresscol, neighborhood, cep, number_house, address_description",
-                "binds" => ":street, :public_place, :uf, :addresscol, :neighborhood, :cep, :number_house, :address_description"
+                "columns" => "rua, logradouro, uf, cidade, bairro, cep, numero, descricao",
+                "binds" => ":rua, :logradouro, :uf, :cidade, :bairro, :cep, :numero, :descricao"
             ],
             "update" => [
-                "columns" => "street, public_place, uf, addresscol, neighborhood, cep, number_house, address_description, deleted, id",
-                "query" => "street = :street, public_place = :public_place, uf = :uf, addresscol = :addresscol, neighborhood = :neighborhood, cep = :cep, number_house = :number_house, address_description = :address_description, deleted = :deleted WHERE id = :id",
-                "binds" => ":street, :public_place, :uf, :addresscol, :neighborhood, :cep, :number_house, :address_description, :deleted, :id"     
+                "columns" => "rua, logradouro, uf, cidade, bairro, cep, numero, descricao, deleted, id",
+                "query" => "rua = :rua, logradouro = :logradouro, uf = :uf, cidade = :cidade, bairro = :bairro, cep = :cep, numero = :numero, descricao = :descricao, deleted = :deleted WHERE id = :id",
+                "binds" => ":rua, :logradouro, :uf, :cidade, :bairro, :cep, :numero, :descricao, :deleted, :id"     
             ],
        );
 
-       parent::__construct("address", $this->keys);
+       parent::__construct("endereco", $this->keys);
     }
 
     public function getKeys() 

@@ -40,7 +40,7 @@ class ProductCategoryController
            
             $this->validator->isValidFields($body, $this->productCategoryDao->getKeys()["insert"]["columns"]);
            
-            $category = new ProductCategory(null, $body["category_description"]);
+            $category = new ProductCategory(null, $body["descricao"]);
 
             $values = array($category->getCategoryDescription());
 
@@ -57,7 +57,10 @@ class ProductCategoryController
            
             $this->validator->isValidFields($body, $this->productCategoryDao->getKeys()["update"]["columns"]);
            
-            $category = new ProductCategory($body["id"], $body["category_description"]);
+            $category = new ProductCategory(
+                $body["id"], 
+                $body["descricao"]
+            );
             
             $values = array(
                 $category->getCategoryDescription(),

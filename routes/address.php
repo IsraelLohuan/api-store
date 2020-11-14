@@ -14,6 +14,15 @@ $app->get("/endereco/{id}", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
+$app->get("/enderecos", function($request, $response) {
+
+    $addressController = new AddressController();
+
+    $data = $addressController->getAll();
+    
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});
+
 $app->post("/endereco", function($request, $response) {
 
     $addressController = new AddressController();

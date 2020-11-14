@@ -14,17 +14,17 @@ class ProductCategoryDao extends Dao
             "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "category_description",
-                "binds" => ":category_description"
+                "columns" => "descricao",
+                "binds" => ":descricao"
             ],
             "update" => [
-                "columns" => "category_description, id",
-                "query" => "category_description = :category_description WHERE id = :id",
-                "binds" => ":category_description, :id"     
+                "columns" => "descricao, id",
+                "query" => "descricao = :descricao WHERE id = :id",
+                "binds" => ":descricao, :id"     
             ],
        );
 
-       parent::__construct("product_category", $this->keys);
+       parent::__construct("produto_categoria", $this->keys);
     }
 
     public function getKeys() 

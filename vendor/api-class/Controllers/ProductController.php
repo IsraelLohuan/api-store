@@ -56,7 +56,16 @@ class ProductController
            
             $this->validator->isValidFields($body, $this->productDao->getKeys()["insert"]["columns"]);
            
-            $product= new Product(null, $body["price"], $body["description"], $body["spotlight"], 0, $body["value_discount"], $body["male"], $body["product_category_id"], $body["title"]);
+            $product= new Product(null, 
+                $body["preco"], 
+                $body["descricao"], 
+                $body["destaque"], 
+                0, 
+                $body["desconto"], 
+                $body["masculino"], 
+                $body["produto_categoria_id"], 
+                $body["titulo"]
+            );
 
             $values = array(
                 $product->getPrice(),
@@ -81,7 +90,17 @@ class ProductController
            
             $this->validator->isValidFields($body, $this->productDao->getKeys()["update"]["columns"]);
            
-            $product= new Product($body["id"], $body["price"], $body["description"], $body["spotlight"], $body["deleted"], $body["value_discount"], $body["male"], $body["product_category_id"], $body["title"]);
+            $product= new Product(
+                $body["id"], 
+                $body["preco"], 
+                $body["descricao"], 
+                $body["destaque"], 
+                $body["deleted"], 
+                $body["desconto"], 
+                $body["masculino"], 
+                $body["produto_categoria_id"], 
+                $body["titulo"]
+            );
             
             $values = array(
                 $product->getPrice(),

@@ -14,21 +14,21 @@ class UserDao extends Dao
             "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "password, admin, id_person",
-                "binds" => ":password, :admin, :id_person"
+                "columns" => "senha, admin, pessoa_id",
+                "binds" => ":senha, :admin, :pessoa_id"
             ],
             "update" => [
-                "columns" => "id, password, admin, id_person",
+                "columns" => "id, senha, admin, pessoa_id",
                 "query" => "
-                    password = :password,
+                    senha = :senha,
                     admin = :admin,
-                    id_person = :id_person
+                    pessoa_id = :pessoa_id
                     WHERE id = :id",
-                "binds" =>   ":password, :admin, :id_person, :id"     
+                "binds" =>   ":senha, :admin, :pessoa_id, :id"     
             ],
        );
 
-       parent::__construct("user", $this->keys);
+       parent::__construct("usuario", $this->keys);
     }
 
     public function getKeys() 

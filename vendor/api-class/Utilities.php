@@ -8,12 +8,18 @@ class Utilities
     {
         if($statusCode != null) {
             return array(
-                "result" => $result,
+                "message" => $result,
                 "code" => $statusCode
             );
         }
 
-        return array("result" => $result);
+        if(!is_array($result)) {
+            return array(
+                "message" => $result
+            );
+        }
+
+        return $result;
     }
 
     public static function getStatusCode(array $values):int 

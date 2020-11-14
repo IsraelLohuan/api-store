@@ -7,7 +7,7 @@ $app->get("/item", function($request, $response) {
 
     $itemOrderController = new ItemOrderController();
 
-    $data = $statusOrderController->getAll();
+    $data = $itemOrderController->getAll();
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
@@ -18,7 +18,7 @@ $app->post("/item", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $data =  $statusOrderController->insert($body ?? array());
+    $data =  $itemOrderController->insert($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
@@ -29,7 +29,7 @@ $app->put("/item", function($request, $response) {
 
     $body = $request->getParsedBody();
 
-    $data = $statusOrderController->update($body ?? array());
+    $data = $itemOrderController->update($body ?? array());
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });

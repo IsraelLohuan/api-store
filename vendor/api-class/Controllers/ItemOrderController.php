@@ -3,6 +3,7 @@
 namespace Application\Controllers;
 
 use Application\Models\Person;
+use Application\Models\ItemOrder;
 use Application\Dao\ItemOrderDao;
 use Application\Utilities;
 use Application\Validator;
@@ -58,13 +59,14 @@ class ItemOrderController
          
             $item = new ItemOrder(
                 null,
-                $body["product_id"],
-                $body["sale_order_id"],     
+                $body["id_produto"],
+                $body["id_pedido"],
+                0  
             );
 
             $values = array(
-                $this->getProductId(),
-                $this->getSaleOrderId()
+                $item->getProductId(),
+                $item->getSaleOrderId()
             );
 
             return Utilities::output($this->itemOrderDao->insert($values));
@@ -81,10 +83,10 @@ class ItemOrderController
             $this->validator->isValidFields($body, $this->itemOrderDao->getKeys()["update"]["columns"]);
 
             $item = new ItemOrder(
-               $body["product_id"],
-               $body["sale_order_id"],
+               $body["id_produto"],
+               $body["id_pedido"],
                $body["deleted"],
-               $body["id"],
+               $body["id"]
             );
         
             $values = array(

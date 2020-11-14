@@ -12,7 +12,7 @@ class ItemOrder
     public function __construct($id, $productId, $saleOrderId, $deleted)
     {
         $this->setId($id);
-        $this->setProductId($product_id);
+        $this->setProductId($productId);
         $this->setSaleOrderId($saleOrderId);
         $this->setDeleted($deleted);
     }
@@ -27,12 +27,12 @@ class ItemOrder
 		$this->id = $id;
 	}
 
-    public function getProduct_id()
+    public function getProductId()
     {
 		return $this->product_id;
 	}
 
-    public function setProduct_id($product_id)
+    public function setProductId($product_id)
     {
 		$this->product_id = $product_id;
 	}

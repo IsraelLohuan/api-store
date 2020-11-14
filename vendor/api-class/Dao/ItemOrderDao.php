@@ -11,20 +11,20 @@ class ItemOrderDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, product_id, sale_order_id, deleted",
+            "all" => "id, id_produto, id_pedido, deleted",
             "byKey" => "id",
             "insert" => [
-                "columns" => "product_id, sale_order_id",
-                "binds" => ":product_id, :sale_order_id"
+                "columns" => "id_produto, id_pedido",
+                "binds" => ":id_produto, :id_pedido"
             ],
             "update" => [
-                "columns" => "product_id, sale_order_id, deleted, id",
-                "query" => "product_id = :product_id, sale_order_id = :sale_order_id, deleted = :deleted WHERE id = :id",
-                "binds" => ":product_id, :sale_order_id, :deleted, :id"     
+                "columns" => "id_produto, id_pedido, deleted, id",
+                "query" => "id_produto = :id_produto, id_pedido = :id_pedido, deleted = :deleted WHERE id = :id",
+                "binds" => ":id_produto, :id_pedido, :deleted, :id"     
             ],
        );
 
-       parent::__construct("item_order", $this->keys);
+       parent::__construct("item_pedido", $this->keys);
     }
 
     public function getKeys() 

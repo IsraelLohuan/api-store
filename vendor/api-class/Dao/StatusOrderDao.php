@@ -24,7 +24,7 @@ class StatusOrderDao extends Dao
             ],
        );
 
-       parent::__construct("status_order", $this->keys);
+       parent::__construct("pedido_status", $this->keys);
     }
 
     public function getKeys() 

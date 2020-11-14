@@ -3,6 +3,7 @@
 namespace Application\Controllers;
 
 use Application\Models\Person;
+use Application\Models\Address;
 use Application\Dao\AddressDao;
 use Application\Utilities;
 use Application\Validator;
@@ -24,7 +25,24 @@ class AddressController
             $values = $this->addressDao->getByKey($id);
 
             if(count($values) == 0) {
-                return Utilities::output("Endereço não encontrada!", 204);
+                return Utilities::output("Endereço não encontrado!", 204);
+            } 
+
+            return Utilities::output($values);
+
+        } catch(\Exception $e) {
+            return Utilities::output($e->getMessage(), 404);
+        }
+    }
+
+    public function getAll() 
+    {
+        try {
+
+            $values = $this->addressDao->getAll();
+
+            if(count($values) == 0) {
+                return Utilities::output("Não há endereço cadastrado!", 204);
             } 
 
             return Utilities::output($values);
@@ -42,14 +60,15 @@ class AddressController
             
             $address = new Address(
                 null, 
-                $body["street"], 
-                $body["public_place"], 
+                $body["rua"], 
+                $body["logradouro"], 
                 $body["uf"], 
-                $body["addresscol"], 
-                $body["neighborhood"],
+                $body["cidade"], 
+                $body["bairro"],
                 $body["cep"],
-                $body["number_house"],
-                $body["address_description"]
+                $body["numero"],
+                $body["descricao"],
+                0
             );
 
             $values = array(
@@ -60,7 +79,7 @@ class AddressController
                 $address->getNeighborhood(),
                 $address->getCep(),
                 $address->getNumberHouse(),
-                $address->AddressDescription()
+                $address->getAddressDescription()
             );
 
             return Utilities::output($this->addressDao->insert($values));
@@ -78,14 +97,14 @@ class AddressController
 
             $address = new Address(
                 $body["id"], 
-                $body["street"], 
-                $body["public_place"], 
+                $body["rua"], 
+                $body["logradouro"], 
                 $body["uf"], 
-                $body["addresscol"], 
-                $body["neighborhood"],
+                $body["cidade"], 
+                $body["bairro"],
                 $body["cep"],
-                $body["number_house"],
-                $body["address_description"],
+                $body["numero"],
+                $body["descricao"],
                 $body["deleted"]
             );
             

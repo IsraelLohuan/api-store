@@ -56,7 +56,7 @@ class UserController
            
             $this->validator->isValidFields($body, $this->userDao->getKeys()["insert"]["columns"]);
            
-            $user = new User(null, $body["password"], $body["admin"], $body["id_person"]);
+            $user = new User(null, $body["senha"], $body["admin"], $body["pessoa_id"]);
 
             $values = array(
                 $user->getPassword(),
@@ -77,7 +77,7 @@ class UserController
            
             $this->validator->isValidFields($body, $this->userDao->getKeys()["update"]["columns"]);
             
-            $user = new User($body["id"], $body["password"], $body["admin"], $body["id_person"]);
+            $user = new User($body["id"], $body["senha"], $body["admin"], $body["pessoa_id"]);
             
             $values = array(
                 $user->getPassword(),

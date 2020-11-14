@@ -14,22 +14,23 @@ class SalesOrderDao extends Dao
             "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "price, person_id, status_order_id, address_id",
-                "binds" => ":price, :person_id, :status_order_id, :address_id"
+                "columns" => "preco, id_pessoa, status_pedido_id, endereco_id",
+                "binds" => ":preco, :id_pessoa, :status_pedido_id, :endereco_id"
             ],
             "update" => [
-                "columns" => "id, price, person_id, status_order_id, address_id",
+                "columns" => "id, preco, id_pessoa, status_pedido_id, endereco_id, deleted",
                 "query" => "
-                    price = :price,
-                    person_id = :person_id,
-                    status_order_id = :status_order_id,
-                    address_id = :address_id
+                    preco = :preco,
+                    id_pessoa = :id_pessoa,
+                    status_pedido_id = :status_pedido_id,
+                    endereco_id = :endereco_id,
+                    deleted = :deleted,
                     WHERE id = :id",
-                "binds" =>   ":price, :person_id, :status_order_id, :address_id, :id"     
+                "binds" =>   ":preco, :id_pessoa, :status_pedido_id, :endereco_id, :deleted, :id"     
             ],
        );
 
-       parent::__construct("sales_order", $this->keys);
+       parent::__construct("pedido", $this->keys);
     }
 
     public function getKeys() 

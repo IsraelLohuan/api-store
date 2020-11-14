@@ -11,29 +11,29 @@ class ProductDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, price, description, value_discount, male, title",
+            "all" => "id, preco, descricao, desconto, masculino, titulo",
             "byKey" => "id",
             "insert" => [
-                "columns" => "price, description, spotlight, value_discount, male, product_category_id, title",
-                "binds" => ":price, :description, :spotlight, :value_discount, :male, :product_category_id, :title"
+                "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo",
+                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo"
             ],
             "update" => [
-                "columns" => "price, description, spotlight, deleted, value_discount, male, product_category_id, title, id",
+                "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, id",
                 "query" => "
-                    price = :price, 
-                    description = :description, 
-                    spotlight = :spotlight, 
+                    preco = :preco, 
+                    descricao = :descricao, 
+                    destaque = :destaque, 
                     deleted = :deleted, 
-                    value_discount = :value_discount, 
-                    male = :male, 
-                    product_category_id = :product_category_id,
-                    title = :title
+                    desconto = :desconto, 
+                    masculino = :masculino, 
+                    produto_categoria_id = :produto_categoria_id,
+                    titulo = :titulo
                     WHERE id = :id",
-                "binds" =>   ":price, :description, :spotlight, :deleted, :value_discount, :male, :product_category_id, :title, :id"     
+                "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :id"     
             ],
        );
 
-       parent::__construct("product", $this->keys);
+       parent::__construct("produto", $this->keys);
     }
 
     public function getKeys() 

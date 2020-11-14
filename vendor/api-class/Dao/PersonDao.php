@@ -11,20 +11,20 @@ class PersonDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, name, date_register, file_name_image, email",
+            "all" => "id, nome, data_cadastro, file_name, email",
             "byKey" => "email",
             "insert" => [
-                "columns" => "name, document, cellphone, file_name_image, email",
-                "binds" => ":name, :document, :cellphone, :file_name_image, :email"
+                "columns" => "nome, documento, telefone, file_name, email",
+                "binds" => ":nome, :documento, :telefone, :file_name, :email"
             ],
             "update" => [
-                "columns" => "name, cellphone, deleted, file_name_image, email, id",
-                "query" => "name = :name, cellphone = :cellphone, deleted = :deleted, file_name_image = :file_name_image, email = :email WHERE id = :id",
-                "binds" => ":name, :cellphone, :deleted, :file_name_image, :email, :id"     
+                "columns" => "nome, telefone, deleted, file_name, email, id",
+                "query" => "nome = :nome, telefone = :telefone, deleted = :deleted, file_name = :file_name, email = :email WHERE id = :id",
+                "binds" => ":nome, :telefone, :deleted, :file_name, :email, :id"     
             ],
        );
 
-       parent::__construct("person", $this->keys);
+       parent::__construct("pessoa", $this->keys);
     }
 
     public function getKeys() 

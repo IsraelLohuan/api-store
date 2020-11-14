@@ -6,7 +6,7 @@ abstract class Connection
 {
     const HOSTNAME = "localhost";
     const USERNAME = "root";
-    const PASSWORD = "";
+    const PASSWORD = "root";
     const DBNAME   = "db_store";
 
     private $conn;

@@ -56,7 +56,14 @@ class PersonController
            
             $this->validator->isValidFields($body, $this->personDao->getKeys()["insert"]["columns"]);
 
-            $person = new Person(null, $body["name"], $body["document"], $body["cellphone"], $body["file_name_image"], $body["email"]);
+            $person = new Person(
+                null, 
+                $body["nome"], 
+                $body["documento"], 
+                $body["telefone"], 
+                $body["file_name"], 
+                $body["email"]
+            );
 
             $this->validator->isValidEmail($person->getEmail());
             $this->validateFieldsUnique($person);
@@ -82,7 +89,14 @@ class PersonController
 
             $this->validator->isValidFields($body, $this->personDao->getKeys()["update"]["columns"]);
 
-            $person = new Person($body["id"], $body["name"], null, $body["cellphone"], $body["file_name_image"], $body["email"]);
+            $person = new Person(
+                $body["id"], 
+                $body["nome"], 
+                null, 
+                $body["telefone"], 
+                $body["file_name"], 
+                $body["email"]
+            );
         
             $this->validator->isValidEmail($person->getEmail());
             $this->validateFieldsUnique($person, false);
@@ -105,7 +119,7 @@ class PersonController
 
     public function validateFieldsUnique(Person $person, bool $validateDocument = true)
     {
-        if($this->personDao->fieldExists("email", $person->getEmail(), $person->getId()))
+        if($this->personDao->fieldExists("email", $person->getEmail(), $person->getId() ?? -1))
         {
             throw new \Exception("Email informado já existente!");
         }
