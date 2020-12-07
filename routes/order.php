@@ -7,7 +7,7 @@ $app->get("/orders", function($request, $response) {
 
     $salesOrderController = new SalesOrderController();
 
-    $data =  $salesOrderController->getAll();
+    $data = $salesOrderController->getAll();
 
     return $response->withJson($data, Utilities::getStatusCode($data));
 });

@@ -11,7 +11,7 @@ class ProductDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, preco, descricao, desconto, masculino, filename, titulo",
+            "all" => "id, preco, descricao, desconto, masculino, filename, titulo, destaque",
             "byKey" => "id",
             "insert" => [
                 "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, filename",

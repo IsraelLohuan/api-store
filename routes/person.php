@@ -35,6 +35,20 @@ $app->get("/person/{email}", function($request, $response) {
     return $response->withJson($data, Utilities::getStatusCode($data));
 });
 
+$app->get("/auth/{email}/{senha}", function($request, $response) {
+
+    $personController = new PersonController();
+
+    $body = array(
+        "email" => $request->getAttribute('email'),
+        "senha" => $request->getAttribute("senha")
+    );
+   
+    $data = $personController->login($body ?? array());
+
+    return $response->withJson($data, Utilities::getStatusCode($data));
+});
+
 $app->post("/person", function($request, $response) {
    
     $personController = new PersonController();

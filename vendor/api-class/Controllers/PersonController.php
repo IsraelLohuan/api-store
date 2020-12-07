@@ -105,9 +105,10 @@ class PersonController
 
             $values = array(
                 $body["nome"], 
-                $body["deleted"],
-                $body["telefone"], 
+                $body["telefone"],
+                $body["deleted"], 
                 $body["file_name"], 
+                $body["email"],
                 $body["senha"],
                 $body["admin"],
                 $body["id"]
