@@ -11,11 +11,11 @@ class AddressDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, rua, logradouro, uf, cidade, bairro, cep, numero, descricao, deleted",
+            "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "rua, logradouro, uf, cidade, bairro, cep, numero, descricao",
-                "binds" => ":rua, :logradouro, :uf, :cidade, :bairro, :cep, :numero, :descricao"
+                "columns" => "rua, logradouro, uf, cidade, bairro, cep, numero, descricao, id_pessoa",
+                "binds" => ":rua, :logradouro, :uf, :cidade, :bairro, :cep, :numero, :descricao, :id_pessoa"
             ],
             "update" => [
                 "columns" => "rua, logradouro, uf, cidade, bairro, cep, numero, descricao, deleted, id",

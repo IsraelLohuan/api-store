@@ -64,7 +64,8 @@ class AddressController
                 $body["bairro"],
                 $body["cep"],
                 $body["numero"],
-                $body["descricao"]
+                $body["descricao"],
+                $body["id_pessoa"]
             );
 
             return Utilities::output($this->addressDao->insert($values));
