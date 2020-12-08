@@ -24,7 +24,7 @@ class SalesOrderDao extends Dao
                     id_pessoa = :id_pessoa,
                     status_pedido_id = :status_pedido_id,
                     endereco_id = :endereco_id,
-                    deleted = :deleted,
+                    deleted = :deleted
                     WHERE id = :id",
                 "binds" =>   ":preco, :id_pessoa, :status_pedido_id, :endereco_id, :deleted, :id"     
             ],

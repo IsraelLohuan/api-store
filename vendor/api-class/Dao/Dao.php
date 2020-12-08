@@ -36,15 +36,19 @@ abstract class Dao extends Connection
         return $this->query->select($sql);
     }
 
-    public function insert(array $values)
+    public function insert(array $values, bool $getLastID = false)
     {
         $columns = $this->keys["insert"]["columns"];
         $binds = $this->keys["insert"]["binds"];
 
         $sql = "INSERT INTO $this->entity ($columns) VALUES ($binds)";
         
-        $this->query->executeQuery($sql, Dao::getValues($values, $binds));
+        $lastID = $this->query->executeQuery($sql, Dao::getValues($values, $binds));
 
+        if($getLastID) {
+            return $lastID;
+        }
+        
         return "Registro salvo com sucesso!";
     }
 

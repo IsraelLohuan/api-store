@@ -52,18 +52,19 @@ class ItemOrderController
     public function insert(array $body)
     {
         try {
-           
+
             $this->validator->isValidFields($body, $this->itemOrderDao->getKeys()["insert"]["columns"]);
          
+            echo "passou";
             $values = array(
                 $body["id_produto"],
                 $body["id_pedido"]
             );
 
-            return Utilities::output($this->itemOrderDao->insert($values));
-
+            return Utilities::output($this->itemOrderDao->insert($values)); 
+            
         } catch(\Exception $e) {
-            return Utilities::output($e->getMessage(), 404);
+           return Utilities::output($e->getMessage(), 404);
         }
     }
 

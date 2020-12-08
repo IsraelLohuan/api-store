@@ -36,6 +36,8 @@ class Query
 		{
 			throw new \Exception("Falha ao salvar registro!");
 		}
+
+		return $this->conn->lastInsertId();
 	}
 
 	public function select($rawQuery, $params = array()):array

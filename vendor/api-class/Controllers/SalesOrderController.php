@@ -3,6 +3,7 @@
 namespace Application\Controllers;
 
 use Application\Dao\SalesOrderDao;
+use Application\Controllers\ItemOrderController;
 use Application\Utilities;
 use Application\Validator;
 
@@ -52,6 +53,11 @@ class SalesOrderController
     public function insert(array $body)
     {
         try {
+
+            if(!isset($body["items"])) {
+                throw new \Exception("Necessário ter itens no pedido!");
+            }
+
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["insert"]["columns"]);
 
             $values = array(
@@ -61,10 +67,23 @@ class SalesOrderController
                 $body["endereco_id"]
             );
 
-            return Utilities::output($this->salesOrderDao->insert($values));
+            $idOrder = $this->salesOrderDao->insert($values, true);
+
+            $this->insertItemsOrder($body["items"], $idOrder);
+
+            return Utilities::output("Registro salvo com sucesso!");
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
+        }
+    }
+
+    private function insertItemsOrder(array $body, $idOrder) {
+        $itemOrderController = new ItemOrderController();
+
+        foreach($body as $key => $value) {
+            $body[$key]["id_pedido"] = $idOrder;
+            $itemOrderController->insert($body[$key]);
         }
     }
 
@@ -72,6 +91,10 @@ class SalesOrderController
     {
         try {
            
+            if(!isset($body["items"])) {
+                throw new \Exception("Necessário ter itens no pedido!");
+            }
+
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["update"]["columns"]);
             
             $values = array(
