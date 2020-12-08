@@ -82,16 +82,17 @@ class AddressController
             $this->validator->isValidFields($body, $this->addressDao->getKeys()["update"]["columns"]);
 
             $values = array(
-                $body["id"], 
                 $body["rua"], 
                 $body["logradouro"], 
                 $body["uf"], 
                 $body["cidade"], 
-                $body["bairro"],
+                $body["bairro"], 
                 $body["cep"],
                 $body["numero"],
                 $body["descricao"],
-                $body["deleted"]
+                $body["deleted"],
+                $body["id_pessoa"],
+                $body["id"]
             );
 
             return Utilities::output($this->addressDao->update($values));
