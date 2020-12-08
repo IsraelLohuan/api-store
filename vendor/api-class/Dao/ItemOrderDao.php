@@ -11,16 +11,16 @@ class ItemOrderDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, id_produto, id_pedido, deleted",
+            "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "id_produto, id_pedido",
-                "binds" => ":id_produto, :id_pedido"
+                "columns" => "id_produto, id_pedido, quantidade, preco, desconto",
+                "binds" => ":id_produto, :id_pedido, :quantidade, :preco, :desconto"
             ],
             "update" => [
-                "columns" => "id_produto, id_pedido, deleted, id",
-                "query" => "id_produto = :id_produto, id_pedido = :id_pedido, deleted = :deleted WHERE id = :id",
-                "binds" => ":id_produto, :id_pedido, :deleted, :id"     
+                "columns" => "id_produto, id_pedido, deleted, id, quantidade, preco, desconto",
+                "query" => "id_produto = :id_produto, id_pedido = :id_pedido, deleted = :deleted, quantidade = :quantidade, preco = :preco, desconto = :desconto WHERE id = :id",
+                "binds" => ":id_produto, :id_pedido, :deleted, :id, :quantidade, :preco, :desconto"     
             ],
        );
 
@@ -30,5 +30,10 @@ class ItemOrderDao extends Dao
     public function getKeys() 
     {
         return $this->keys;
+    }
+
+    public function getItemsOrder($idOrder) 
+    {
+        return $this->query->select("SELECT * FROM item_pedido where id_pedido = " . $idOrder . " and deleted = 0");
     }
 }

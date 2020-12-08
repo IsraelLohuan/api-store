@@ -14,19 +14,19 @@ class SalesOrderDao extends Dao
             "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "preco, id_pessoa, status_pedido_id, endereco_id",
-                "binds" => ":preco, :id_pessoa, :status_pedido_id, :endereco_id"
+                "columns" => "valor_total, id_pessoa, status_pedido_id, endereco_id",
+                "binds" => ":valor_total, :id_pessoa, :status_pedido_id, :endereco_id"
             ],
             "update" => [
-                "columns" => "id, preco, id_pessoa, status_pedido_id, endereco_id, deleted",
+                "columns" => "id, valor_total, id_pessoa, status_pedido_id, endereco_id, deleted",
                 "query" => "
-                    preco = :preco,
+                    valor_total = :valor_total,
                     id_pessoa = :id_pessoa,
                     status_pedido_id = :status_pedido_id,
                     endereco_id = :endereco_id,
                     deleted = :deleted
                     WHERE id = :id",
-                "binds" =>   ":preco, :id_pessoa, :status_pedido_id, :endereco_id, :deleted, :id"     
+                "binds" =>  ":valor_total, :id_pessoa, :status_pedido_id, :endereco_id, :deleted, :id"     
             ],
        );
 

@@ -17,6 +17,10 @@ class ItemOrderController
         $this->validator = new Validator();
     }
 
+    public function getItemsOrder($idOrder) {
+        return $this->itemOrderDao->getItemsOrder($idOrder);
+    }
+
     public function getAll():array
     {
         try {
@@ -55,10 +59,12 @@ class ItemOrderController
 
             $this->validator->isValidFields($body, $this->itemOrderDao->getKeys()["insert"]["columns"]);
          
-            echo "passou";
             $values = array(
                 $body["id_produto"],
-                $body["id_pedido"]
+                $body["id_pedido"],
+                $body["quantidade"],
+                $body["preco"],
+                $body["desconto"]
             );
 
             return Utilities::output($this->itemOrderDao->insert($values)); 
@@ -78,7 +84,10 @@ class ItemOrderController
                 $body["id_produto"],
                 $body["id_pedido"],
                 $body["deleted"],
-                $body["id"]
+                $body["id"],
+                $body["quantidade"],
+                $body["preco"],
+                $body["desconto"]
             );
 
             return Utilities::output($this->itemOrderDao->update($values));

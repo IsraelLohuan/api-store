@@ -11,11 +11,13 @@ class SalesOrderController
 {
     private $salesOrderDao;
     private $validator;
+    private $itemOrderController;
 
     public function __construct()
     {
         $this->salesOrderDao = new SalesOrderDao();
         $this->validator = new Validator();
+        $this->itemOrderController = new ItemOrderController();
     }
 
     public function getAll()
@@ -43,6 +45,8 @@ class SalesOrderController
                 return Utilities::output("Pedido de venda não encontrado!", 204);
             } 
 
+            $values[0]["items"] = $this->itemOrderController->getItemsOrder($id);
+
             return Utilities::output($values);
 
         } catch(\Exception $e) {
@@ -61,7 +65,7 @@ class SalesOrderController
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["insert"]["columns"]);
 
             $values = array(
-                $body["preco"],
+                $body["valor_total"],
                 $body["id_pessoa"],
                 $body["status_pedido_id"],
                 $body["endereco_id"]
@@ -78,15 +82,6 @@ class SalesOrderController
         }
     }
 
-    private function insertItemsOrder(array $body, $idOrder) {
-        $itemOrderController = new ItemOrderController();
-
-        foreach($body as $key => $value) {
-            $body[$key]["id_pedido"] = $idOrder;
-            $itemOrderController->insert($body[$key]);
-        }
-    }
-
     public function update(array $body)
     {
         try {
@@ -98,7 +93,7 @@ class SalesOrderController
             $this->validator->isValidFields($body, $this->salesOrderDao->getKeys()["update"]["columns"]);
             
             $values = array(
-                $body["preco"],
+                $body["valor_total"],
                 $body["id_pessoa"], 
                 $body["status_pedido_id"],
                 $body["endereco_id"],
@@ -106,10 +101,29 @@ class SalesOrderController
                 $body["id"]
             );
 
+            $this->updateItemsOrder($body["items"]);
+
             return Utilities::output($this->salesOrderDao->update($values));
 
         } catch(\Exception $e) {
             return Utilities::output($e->getMessage(), 404);
+        }
+    }
+
+    private function insertItemsOrder(array $body, $idOrder) 
+    {
+        foreach($body as $key => $value) 
+        {
+            $body[$key]["id_pedido"] = $idOrder;
+            $this->itemOrderController->insert($body[$key]);
+        }
+    }
+
+    private function updateItemsOrder(array $body)
+    {
+        foreach($body as $key => $value) 
+        {
+            $this->itemOrderController->update($body[$key]);
         }
     }
 }
