@@ -52,6 +52,7 @@ class SalesOrderDao extends Dao
     public function getByKey($key) 
     {
         $sql = "select p.id, p.status_pedido_id, p.valor_total, p.data_cadastro, p.id_pessoa, p.endereco_id, p.deleted, pes.nome as cliente,
+                pes.email,
                 ps.status
                 from pedido as p INNER JOIN pedido_status as ps
                 INNER JOIN pessoa as pes
