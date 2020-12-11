@@ -65,7 +65,7 @@ class ProductController
                 $body["masculino"],
                 $body["produto_categoria_id"],
                 $body["titulo"],
-                $body["filename"],
+                $body["filename"]
             );
 
             return Utilities::output($this->productDao->insert($values));
@@ -82,7 +82,6 @@ class ProductController
             $this->validator->isValidFields($body, $this->productDao->getKeys()["update"]["columns"]);
            
             $values = array(
-                $body["id"], 
                 $body["preco"], 
                 $body["descricao"], 
                 $body["destaque"], 
@@ -90,8 +89,9 @@ class ProductController
                 $body["desconto"], 
                 $body["masculino"], 
                 $body["produto_categoria_id"], 
-                $body["titulo"],
+                $body["titulo"], 
                 $body["filename"],
+                $body["id"]
             );
 
             return Utilities::output($this->productDao->update($values));

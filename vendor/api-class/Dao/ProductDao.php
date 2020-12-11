@@ -11,7 +11,7 @@ class ProductDao extends Dao
     public function __construct()
     {
        $this->keys = array(
-            "all" => "id, preco, descricao, desconto, masculino, filename, titulo, destaque",
+            "all" => "*",
             "byKey" => "id",
             "insert" => [
                 "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, filename",
@@ -28,7 +28,7 @@ class ProductDao extends Dao
                     masculino = :masculino, 
                     produto_categoria_id = :produto_categoria_id,
                     titulo = :titulo,
-                    filename = :filename,
+                    filename = :filename
                     WHERE id = :id",
                 "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :filename, :id"     
             ],

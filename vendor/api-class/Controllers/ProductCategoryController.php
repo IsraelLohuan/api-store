@@ -56,8 +56,8 @@ class ProductCategoryController
            
             $values = array(
                 $body["descricao"],
-                $body["id"],
-                $body["deleted"]
+                $body["deleted"],
+                $body["id"]
             );
 
             return Utilities::output($this->productCategoryDao->update($values));

@@ -57,7 +57,7 @@ class SalesOrderController
     public function insert(array $body)
     {
         try {
-
+            
             if(!isset($body["items"])) {
                 throw new \Exception("Necessário ter itens no pedido!");
             }
