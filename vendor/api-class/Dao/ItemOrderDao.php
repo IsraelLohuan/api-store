@@ -34,6 +34,9 @@ class ItemOrderDao extends Dao
 
     public function getItemsOrder($idOrder) 
     {
-        return $this->query->select("SELECT * FROM item_pedido where id_pedido = " . $idOrder . " and deleted = 0");
+        return $this->query->select("SELECT i.id, i.id_pedido, i.deleted, i.quantidade, i.preco, i.desconto,
+        p.titulo FROM item_pedido as i
+        INNER JOIN produto as p
+        WHERE p.id = i.id_produto and i.id_pedido = " . $idOrder . " and i.deleted = 0");
     }
 }
