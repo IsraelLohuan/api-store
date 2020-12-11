@@ -26,8 +26,6 @@ class ProductController
                 return Utilities::output("Não há produtos cadastrado!", 204);
             } 
 
-            Utilities::setBase64Json($values, "produtos");
-
             return Utilities::output($values);
 
         } catch(\Exception $e) {
@@ -65,7 +63,7 @@ class ProductController
                 $body["masculino"],
                 $body["produto_categoria_id"],
                 $body["titulo"],
-                $body["filename"]
+                $body["url_image"]
             );
 
             return Utilities::output($this->productDao->insert($values));
@@ -90,7 +88,7 @@ class ProductController
                 $body["masculino"], 
                 $body["produto_categoria_id"], 
                 $body["titulo"], 
-                $body["filename"],
+                $body["url_image"],
                 $body["id"]
             );
 

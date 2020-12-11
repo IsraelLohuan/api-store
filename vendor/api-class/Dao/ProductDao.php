@@ -14,11 +14,11 @@ class ProductDao extends Dao
             "all" => "*",
             "byKey" => "id",
             "insert" => [
-                "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, filename",
-                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo, :filename"
+                "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, url_image",
+                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo, url_image"
             ],
             "update" => [
-                "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, filename, id",
+                "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, url_image, id",
                 "query" => "
                     preco = :preco, 
                     descricao = :descricao, 
@@ -28,9 +28,9 @@ class ProductDao extends Dao
                     masculino = :masculino, 
                     produto_categoria_id = :produto_categoria_id,
                     titulo = :titulo,
-                    filename = :filename
+                    url_image = :url_image
                     WHERE id = :id",
-                "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :filename, :id"     
+                "binds" =>   ":preco, :descricao, :destaque, :deleted, :desconto, :masculino, :produto_categoria_id, :titulo, :url_image, :id"     
             ],
        );
 
