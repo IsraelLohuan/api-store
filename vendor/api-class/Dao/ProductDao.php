@@ -15,7 +15,7 @@ class ProductDao extends Dao
             "byKey" => "id",
             "insert" => [
                 "columns" => "preco, descricao, destaque, desconto, masculino, produto_categoria_id, titulo, url_image",
-                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo, url_image"
+                "binds" => ":preco, :descricao, :destaque, :desconto, :masculino, :produto_categoria_id, :titulo, :url_image"
             ],
             "update" => [
                 "columns" => "preco, descricao, destaque, deleted, desconto, masculino, produto_categoria_id, titulo, url_image, id",
